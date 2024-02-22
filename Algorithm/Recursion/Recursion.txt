@@ -1,0 +1,41 @@
+ALGORITHM IsPalindrome;
+var
+  word: string;
+  left, right, length: integer;
+begin
+
+  read(word);
+
+  length := length(word);
+
+  // Clean the word
+  word := lowercase(word);
+  for i := 1 to length do
+  begin
+    if not (word[i] in 'a'..'z' or word[i] in '0'..'9') then
+    begin
+      delete(word, i, 1);
+      dec(length);
+      i := i - 1;
+    end;
+  end;
+
+  // Initialize pointers
+  left := 1;
+  right := length;
+
+  // Loop until pointers meet
+  while left <= right do
+  begin
+    if word[left] <> word[right] then
+    begin
+      writeln('The word is not a palindrome.');
+      exit;
+    end;
+    inc(left);
+    dec(right);
+  end;
+
+  // Word is a palindrome
+  write('The word is a palindrome.');
+end.
